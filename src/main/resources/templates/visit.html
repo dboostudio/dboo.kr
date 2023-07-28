@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>DBOO'S_LOG</title>
     <link rel="stylesheet" th:href="@{/style.css}">
+    <script th:src="@{/common.js}"></script>
 </head>
 
 <body>
@@ -14,14 +15,14 @@
     <main>
         <!-- Comments Page -->
         <section id="comments">
-            <h2>Leave Comments</h2>
-            <form action="" method="post">
-                <input type="text" name="name" placeholder="Your Name">
-                <input type="email" name="email" placeholder="Your Email">
-                <textarea name="comment" rows="10" cols="50" placeholder="Your Comment"></textarea>
-                <input type="submit" value="Submit">
+            <h2>방명록 남기기</h2>
+            <form>
+                <input type="text" id="name" placeholder="Your Name">
+                <input type="email" id="email" placeholder="Your Email">
+                <textarea id="comment" rows="10" cols="50" placeholder="Your Comment"></textarea>
+                <button type="submit" onclick="saveComment(); location.href='/visit?'"> 남기기! </button>
             </form>
-            <h2>Comments</h2>
+            <h2>방명록</h2>
             <p>This is a section where visitors can leave comments about our website.</p>
             <section th:each="comment : ${comments}">
                 <h3 th:text="${comment.name}"></h3>
@@ -31,11 +32,26 @@
         </section>
     </main>
 
-
-
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
-
-
 </body>
+
+<script>
+
+    function saveComment() {
+        let uri = '/api/v1/comment';
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let comment = document.getElementById('comment').value;
+        let data = {
+            'name' : name,
+            'email' : email,
+            'comment' : comment
+        };
+        postData(uri, data).then();
+    }
+
+
+</script>
 </html>
+

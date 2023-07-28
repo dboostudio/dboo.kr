@@ -1,16 +1,21 @@
 package kr.dboo;
 
+import kr.dboo.api.v1.entity.Comment;
+import kr.dboo.api.v1.repository.CommentRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.net.InetAddress;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class DbooController {
+
+    private final CommentRepository commentRepository;
 
     @GetMapping("/resume")
     public String resume(Model model){
@@ -27,15 +32,8 @@ public class DbooController {
     @GetMapping("/visit")
     public String visit(Model model) {
         addDefaultModelAttributes(model);
-        Comment comment1 = Comment.builder()
-                .name("부대환")
-                .comment("잘보고 갑니다~")
-                .build();
-        Comment comment2 = Comment.builder()
-                .name("부대환")
-                .comment("잘보고 갑니다~")
-                .build();
-        List<Comment> comments = List.of(comment1, comment2);
+
+        List<Comment> comments = commentRepository.findAll();
         model.addAttribute("comments", comments);
         return "visit";
     }
