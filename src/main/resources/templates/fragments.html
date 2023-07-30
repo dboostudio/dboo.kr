@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <title>DBOO'S_LOG</title>
     <link rel="stylesheet" th:href="@{/style.css}">
+    <script th:src="@{/common.js}"></script>
 </head>
 
 <header th:fragment="header">
     <h1>DBOO'S_LOG</h1>
     <nav>
-        <a href="" th:href="@{/}">HOME</a>
-        <a href="" th:href="@{resume}">WHOAMI</a>
-        <a href="" th:href="@{post}">POST</a>
-        <a href="" th:href="@{visit}">VISIT</a>
+        <a th:href="@{/}">HOME</a>
+        <a th:href="@{resume}">WHOAMI</a>
+        <a th:href="@{post}">POST</a>
+        <a th:href="@{visit}">VISIT</a>
     </nav>
 </header>
 

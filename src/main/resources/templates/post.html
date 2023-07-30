@@ -1,31 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-    <meta charset="UTF-8">
-    <title>DBOO'S_LOG</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
-</head>
+<head th:replace="~{fragments::head}"></head>
 
 <body>
 
 <div class="container">
     <header th:replace="~{fragments::header}"></header>
 
+    <h2>Posts</h2>
     <section id="posts">
-        <h2>Posts</h2>
-        <ul>
-            <li>
-                <a href="#">This is my first post</a>
-                <p>This is the content of my first post.</p>
-            </li>
-            <li>
-                <a href="#">This is my second post</a>
-                <p>This is the content of my second post.</p>
-            </li>
-            <li>
-                <a href="#">This is my third post</a>
-                <p>This is the content of my third post.</p>
-            </li>
+        <ul class="post-list">
+            <li><a href="#">This is my first post</a></li>
+            <li><a href="#">This is my second post</a></li>
+            <li><a href="#">This is my third post</a></li>
         </ul>
     </section>
 

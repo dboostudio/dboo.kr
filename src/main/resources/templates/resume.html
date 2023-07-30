@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-    <meta charset="UTF-8">
-    <title>DBOO'S_LOG</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
-</head>
+<head th:replace="~{fragments::head}"></head>
 
 <body>
 <div class="container">
     <header th:replace="~{fragments::header}"></header>
     <main>
-        <section id="who-we-are">
-            <h2>Who We Are</h2>
-            <p>We are a team of developers who are passionate about creating beautiful and user-friendly websites. We believe that everyone should have access to high-quality web design, regardless of their budget.</p>
-            <p>We have been working together for over 5 years, and we have a wealth of experience in a variety of web development technologies. We are always up-to-date on the latest trends, and we are always looking for new ways to improve our work.</p>
-            <p>We are committed to providing our clients with the best possible service. We listen to their needs, and we work with them to create a website that meets their specific requirements. We are also available to provide support and maintenance after the website is launched.</p>
+        <section>
+            <h2>About Me</h2>
+            <ul>
+                <li>3년동안 Java/Spring 기반의 백엔드 서버 개발을 수행해 왔습니다.</li>
+                <li>최근 1년간 Microservice를 Kubernetes 클러스터에 배포하는 경험을 쌓고 있습니다.</li>
+                <li>문제를 해결하는 여러가지 방법 중, 현재의 상황에 맞는 해결책을 찾는 것을 중요하다고 여깁니다.</li>
+                <li>규모가 큰 서비스를 위한 기술들을 학습하고 연습하는 과정에 있습니다.</li>
+                <li>직관적인 서비스 로직을 위해 도메인을 중심으로 설계를 하는 것을 추구합니다.</li>
+                <li>다른 생각을 가진 동료들과 토론을 통해 합리적인 방안을 도출하는 것에 능숙합니다.</li>
+            </ul>
+
         </section>
-        <section id="our-mission">
-            <h3>Our Mission</h3>
-            <p>Our mission is to provide our clients with the best possible web development experience. We believe that a great website should be both beautiful and functional. We also believe that a website should be easy to use and navigate.</p>
-            <p>We are committed to providing our clients with a high level of service. We listen to their needs and work with them to create a website that meets their specific requirements. We are also available to provide support and maintenance after the website is launched.</p>
+        <section>
+            <h3>Career</h3>
+            <h4>티맥스 에이아이 <span>,분당</span></h4>
+            <p>연구원</p>
+            <p>2022.01 ~</p>
+            <h4>(주) CS<span>,제주</span></h4>
+            <p>2020.03 ~ 2021.11</p>
         </section>
-        <section id="what-we-do">
+        <section>
             <h2>What We Do</h2>
             <p>We offer a wide range of web development services, including:</p>
             <ul>
@@ -33,7 +38,7 @@
             </ul>
             <p>We also offer a variety of custom web development services. If you have a specific need, we will work with you to create a solution that meets your requirements.</p>
         </section>
-        <section id="contact-us">
+        <section>
             <h2>Contact Us</h2>
             <p>If you would like to learn more about our services, please contact us. We would be happy to answer any questions you have.</p>
             <p>You can contact us by email at <a href="mailto:info@example.com">info@example.com</a> or by phone at (555) 555-5555.</p>

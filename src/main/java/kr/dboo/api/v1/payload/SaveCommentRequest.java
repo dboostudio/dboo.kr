@@ -8,10 +8,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class SaveCommentRequest {
 
-    @NotBlank
+    @NotBlank(message = "이름을 입력해주세요.")
     private String name;
-    @NotBlank
+    @NotBlank(message = "이메일을 입력해주세요.")
     private String email;
-    @NotBlank
+    @NotBlank(message = "코멘트를 입력해주세요.")
     private String comment;
 }

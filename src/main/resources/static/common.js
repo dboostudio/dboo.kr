@@ -1,5 +1,5 @@
-const baseurl = "https://dboo.kr";
-// const baseurl = "http://localhost:8080";
+// const baseurl = "https://dboo.kr";
+const baseurl = "http://localhost:8080";
 
 async function postData(uri, data){
     let url = baseurl + uri;
@@ -8,8 +8,20 @@ async function postData(uri, data){
         headers: {
             "Content-Type" : "application/json"
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
     }
     const response = await fetch(url, payload);
-    return response.json();
+    if(response.ok)
+        return response.json();
+    else{
+        try {
+            const json = await response.json();
+            let alertMessage = "";
+            json.forEach(e => alertMessage += e.defaultMessage + "\n");
+            alert(alertMessage);
+        } catch (error) {
+            alert("알수없는 서버 에러가 발생하였습니다.");
+        }
+    }
+
 }
