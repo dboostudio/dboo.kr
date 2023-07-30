@@ -10,15 +10,14 @@
     <main>
         <!-- Comments Page -->
         <section id="comments">
-            <h2>방명록 남기기</h2>
             <div id="form">
+                <p>방명록 작성하기</p>
                 <input type="text" id="name" placeholder="이름">
                 <input type="email" id="email" placeholder="이메일">
                 <textarea id="comment" rows="10" cols="50" placeholder="코멘트"></textarea>
                 <input id="submit" type="submit" value="남기기!"> </input>
             </div>
             <h2>방명록</h2>
-            <p>This is a section where visitors can leave comments about our website.</p>
             <section th:each="comment : ${comments}">
                 <h3 th:text="${comment.name}"></h3>
                 <p th:text="${comment.comment}"></p>
@@ -36,6 +35,7 @@
     button.addEventListener("click", saveComment);
 
     function saveComment() {
+        button.removeEventListener("click", saveComment);
         let uri = '/api/v1/comment';
         let name = document.getElementById('name').value;
         let email = document.getElementById('email').value;
@@ -46,10 +46,11 @@
             'comment' : comment
         };
 
-        button.removeEventListener("click", saveComment);
         postData(uri, data)
         .then(() => {
             window.location.reload();
+        }).catch(() =>{
+            button.addEventListener("click", saveComment)
         });
 
     }
