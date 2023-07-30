@@ -12,7 +12,7 @@ async function postData(uri, data){
     }
     const response = await fetch(url, payload);
     if(response.ok)
-        return await response.json();
+        return response;
     else{
         const json = await response.json();
         let alertMessage = "";
