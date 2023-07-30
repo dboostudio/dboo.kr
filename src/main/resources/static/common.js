@@ -8,20 +8,17 @@ async function postData(uri, data){
         headers: {
             "Content-Type" : "application/json"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     }
     const response = await fetch(url, payload);
     if(response.ok)
-        return response.json();
+        return await response.json();
     else{
-        try {
-            const json = await response.json();
-            let alertMessage = "";
-            json.forEach(e => alertMessage += e.defaultMessage + "\n");
-            alert(alertMessage);
-        } catch (error) {
-            alert("알수없는 서버 에러가 발생하였습니다.");
-        }
+        const json = await response.json();
+        let alertMessage = "";
+        json.forEach(e => alertMessage += e.defaultMessage + "\n");
+        alert(alertMessage);
+        throw new Error();
     }
 
 }

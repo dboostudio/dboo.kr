@@ -45,11 +45,13 @@
             'email' : email,
             'comment' : comment
         };
+
+        button.removeEventListener("click", saveComment);
         postData(uri, data)
         .then(() => {
-            document.location.href=baseurl+"/visit";
+            window.location.reload();
         });
-        return false;
+
     }
 
 
