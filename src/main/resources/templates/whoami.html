@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}"></head>
+
+<body>
+<div class="container">
+    <header th:replace="~{fragments::header}"></header>
+    <main>
+        <section>
+            <h2>About Me</h2>
+            <hr>
+            <table id="about-me">
+                <tr>
+                    <td><img id="profile" th:src="@{/images/profile.jpg}"></td>
+                    <td><ul>
+                        <li>3년동안 Java/Spring 기반의 백엔드 서버 개발을 수행해 왔습니다.</li>
+                        <li>최근 1년간 Microservice를 Kubernetes 클러스터에 배포하는 경험을 쌓고 있습니다.</li>
+                        <li>문제를 해결하는 여러가지 방법 중, 현재의 상황에 맞는 해결책을 찾는 것을 중요하다고 여깁니다.</li>
+                        <li>규모가 큰 서비스를 위한 기술들을 학습하고 연습하는 과정에 있습니다.</li>
+                        <li>직관적인 서비스 로직을 위해 도메인을 중심으로 설계를 하는 것을 추구합니다.</li>
+                        <li>다른 생각을 가진 동료들과 토론을 통해 합리적인 방안을 도출하는 것에 능숙합니다.</li>
+                    </ul></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <h2>Career</h2>
+            <hr>
+            <table id="career">
+                <tr>
+                    <th>회사명</th>
+                    <th>소재지</th>
+                    <th>직책</th>
+                    <th>기간</th>
+                </tr>
+                <tr>
+                    <td>티맥스 에이아이</td>
+                    <td>경기도 분당</td>
+                    <td>연구원</td>
+                    <td>2022.01 ~</td>
+                </tr>
+                <tr>
+                    <td>주식회사 CS</td>
+                    <td>제주도 제주시</td>
+                    <td>S/W Engineer</td>
+                    <td>2020.03 ~ 2021.11</td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <h2>Projects</h2>
+            <hr>
+
+
+            <table>
+                <tr>
+                    <th>회사명</th>
+                    <th>프로젝트명</th>
+                    <th>수행기간</th>
+                    <th>개요</th>
+                </tr>
+                <tr>
+                    <td>티맥스 에이아이</td>
+                    <td>RG-News</td>
+                    <td>2023.03 ~</td>
+                    <td>Tmax SuperApp 플랫폼에서 뉴스앱 백엔드 개발</td>
+                </tr>
+                <tr>
+                    <td>티맥스 에이아이</td>
+                    <td>하이퍼챗봇 2.0</td>
+                    <td>2022.01 ~</td>
+                    <td>ManyChat을 벤치마킹한 RuleBased Chatbot</td>
+                </tr>
+                <tr>
+                    <td>주식회사 CS</td>
+                    <td>정부 SI프로젝트 수행</td>
+                    <td>2021.05 ~ 2021.11</td>
+                    <td>전자정부 프레임워크를 활용한 각종 SI프로젝트 수행</td>
+                </tr>
+                <tr>
+                    <td>주식회사 CS</td>
+                    <td>미어캅</td>
+                    <td>2020.04 ~ 2021.11</td>
+                    <td>노트북 도난방지 서비스</td>
+                </tr>
+            </table>
+            <p id="portfolio" >
+                프로젝트 상세: <a href="https://fierce-aura-689.notion.site/0bcde357bba1460fab9a8bb6a0f4ba01?v=a3aef070491c449e8b8ba344813dd511&pvs=4">경력기술서</a>
+            </p>
+        </section>
+        <section>
+            <h2>Contact</h2>
+            <hr>
+            <table>
+                <tr>
+                    <th><i class="fa fa-envelope"></i></th>
+                    <td><a href="mailto:dboo.studio@example.com">E-Mail</a></td>
+                </tr>
+                <tr>
+                    <th><i class="fa-brands fa-square-github"></i></th>
+                    <td><a href="https://github.com/dboostudio">Github</a></td>
+                </tr>
+                <tr>
+                    <th><i class="fa-brands fa-linkedin"></i></th>
+                    <td><a href="https://www.linkedin.com/in/%EB%8C%80%ED%99%98-%EB%B6%80-694b1922b/">LinkedIn</a></td>
+                </tr>
+                <tr>
+                    <th><i class="fa-solid fa-link"></i></th>
+                    <td><a href="https://dboo.kr">dboo.kr</a></td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+
+    <footer th:replace="~{fragments::footer}"></footer>
+</div>
+
+</body>
+</html>

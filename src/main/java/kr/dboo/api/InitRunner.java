@@ -13,9 +13,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class InitRunner implements ApplicationRunner {
-    private final CommentRepository commentRepository;
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        commentRepository.deleteAll();
     }
 }

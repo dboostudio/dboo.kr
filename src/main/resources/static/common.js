@@ -1,5 +1,5 @@
-// const baseurl = "https://dboo.kr";
-const baseurl = "http://localhost:8080";
+const baseurl = "https://dboo.kr";
+// const baseurl = "http://localhost:8080";
 
 async function postData(uri, data){
     let url = baseurl + uri;

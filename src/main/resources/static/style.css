@@ -13,18 +13,22 @@ header {
 
 h1 {
     font-size: 2em;
+    margin: 0;
 }
 
 h2 {
     font-size: 1.5em;
+    margin: 0;
 }
 
 h3 {
     font-size: 1.2em;
+    margin: 0;
 }
 
 h4 {
     font-size: 1em;
+    margin: 0;
 }
 
 nav {
@@ -44,11 +48,6 @@ main {
     margin-top: 20px;
 }
 
-article {
-    /*border: 1px solid #ccc;*/
-    padding: 20px;
-}
-
 
 aside {
     background-color: #eee;
@@ -63,10 +62,19 @@ footer {
     color: #fff;
     padding: 20px;
 }
-section {
-    border: 1px solid #ccc;
+
+article {
+    /*border: 1px solid #ccc;*/
     padding: 20px;
-    margin: 10px;
+}
+
+section {
+    padding: 20px;
+    /*margin: 10px;*/
+}
+
+hr {
+    margin: 5px 0 10px 0;
 }
 
 .comment {
@@ -131,3 +139,23 @@ li a:hover {
 }
 
 /* resume */
+table {
+    text-align: left;
+}
+
+table th {
+    font-size: 1.1em;
+    padding: 5px 20px;
+}
+table td {
+    padding: 5px 20px;
+}
+
+img#profile {
+    width: 200px;
+    margin: 0 30px 0 0;
+}
+
+p#portfolio{
+    padding: 10px 0 0 20px;
+}

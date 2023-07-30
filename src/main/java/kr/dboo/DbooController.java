@@ -17,10 +17,10 @@ public class DbooController {
 
     private final CommentRepository commentRepository;
 
-    @GetMapping("/resume")
+    @GetMapping("/whoami")
     public String resume(Model model){
         addDefaultModelAttributes(model);
-        return "resume";
+        return "whoami";
     }
 
     @GetMapping("/post")
