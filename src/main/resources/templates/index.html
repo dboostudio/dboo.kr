@@ -6,27 +6,159 @@
 <div class="container">
     <header th:replace="~{fragments::header}"></header>
     <main>
-        <article>
-            <h2>My Latest Blog Post</h2>
-            <p>This is my latest blog post about HTML and CSS. I'm going to share some best practices for writing HTML and CSS code that will make your blog posts look great.</p>
-            <aside>
-                <h3>This is an aside</h3>
-                <p>This aside is a great place to put additional information that is related to the main content of the blog post, but not essential.</p>
-            </aside>
-            <p>First, it's important to use semantic HTML elements. Semantic elements are HTML elements that have a specific meaning, such as aaa. Using semantic elements makes your code more readable and understandable for both humans and machines.</p>
-            <p>Second, use descriptive names for your CSS classes and IDs. When you give your CSS classes and IDs descriptive names, it makes it easier to understand what they are for and how they are used. For example, instead of using a class name like <code>.class1</code>, you could use a name like <code>.header-container</code>.</p>
-            <p>Third, use consistent naming conventions. When you use consistent naming conventions for your HTML and CSS elements, it makes your code more readable and maintainable. For example, you could decide to always use lowercase letters for your HTML element names and hyphens for your CSS class names.</p>
-            <p>Fourth, comment your code. Commenting your code is a great way to explain what your code is doing and why. This can be especially helpful for complex or difficult-to-understand code.</p>
-            <p>Fifth, use a CSS preprocessor. A CSS preprocessor is a tool that allows you to write more concise and maintainable CSS code. Some popular CSS preprocessors include SASS, LESS, and Stylus.</p>
-            <p>Finally, test your code. Before you publish your blog post, it is important to test your code to make sure that it works as expected. You can do this by using a web browser or a code editor with a built-in debugger.</p>
-        </article>
-    </main>
+        <section>
+            <h2><i class="fa-solid fa-circle-question"></i>
+                부대환</h2>
+            <hr>
+            <table>
+                <tr>
+                    <td><img id="profile" th:src="@{/images/profile.jpg}"></td>
+                    <td><ul>
+                        <li>
+                            <i class="fa-solid fa-server"></i>
+                            3년동안 Java/Spring 기반의 백엔드 서버 개발을 수행해 왔습니다.</li>
+                        <li><i class="fa-solid fa-triangle-exclamation"></i>
+                            문제를 해결하는 여러가지 방법 중, 현재의 상황에 맞는 해결책을 찾는 것을 중요하다고 여깁니다.</li>
+                        <li><i class="fa-solid fa-people-carry-box"></i>
+                            다른 생각을 가진 동료들과 토론을 통해 합리적인 방안을 도출하는 것에 능숙합니다.</li>
+                        <li><i class="fa-solid fa-bell-concierge"></i>
+                            직관적인 서비스 로직을 위해 도메인을 중심으로 설계를 하는 것을 추구합니다.</li>
+                        <li><i class="fa-solid fa-pen-to-square"></i>
+                            규모가 큰 서비스를 위한 기술들을 학습하고 연습하는 과정에 있습니다.</li>
+                        <li><i class="fa-solid fa-sitemap"></i>
+                            Microservice를 Kubernetes 클러스터에 배포하는 경험을 쌓고 있습니다.</li>
+                    </ul></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <h2><i class="fa-solid fa-briefcase"></i>Career</h2>
+            <hr>
+            <table class="common">
+                <tr>
+                    <th>기간</th>
+                    <th>교육기관</th>
+                    <th>소재지</th>
+                    <th>직책</th>
+                </tr>
+                <tr>
+                    <td>2022.01 ~</td>
+                    <td>티맥스 에이아이</td>
+                    <td>경기도 분당구</td>
+                    <td>연구원</td>
+                </tr>
+                <tr>
+                    <td>2020.03 ~ 2021.11</td>
+                    <td>주식회사 CS</td>
+                    <td>제주도 제주시</td>
+                    <td>S/W Engineer</td>
+                </tr>
+            </table>
+        </section>
 
+        <section>
+            <h2><i class="fa-solid fa-list-check"></i>Projects</h2>
+            <hr>
+            <table class="common">
+                <tr>
+                    <th>수행기간</th>
+                    <th>회사명</th>
+                    <th>프로젝트명</th>
+                    <th>개요</th>
+                </tr>
+                <tr>
+                    <td>2023.03 ~</td>
+                    <td>티맥스 에이아이</td>
+                    <td>RG-News</td>
+                    <td>Tmax SuperApp 플랫폼 뉴스 앱</td>
+                </tr>
+                <tr>
+                    <td>2022.01 ~</td>
+                    <td>티맥스 에이아이</td>
+                    <td>하이퍼챗봇 2.0</td>
+                    <td>ManyChat을 벤치마킹한 RuleBased Chatbot</td>
+                </tr>
+                <tr>
+                    <td>2021.12 ~ 2022.01</td>
+                    <td>주식회사 영길이</td>
+                    <td>영길이 웹 프로젝트</td>
+                    <td>농민을 타겟으로 한 주문/배송 관리 웹서비스</td>
+                </tr>
+                <tr>
+                    <td>2021.05 ~ 2021.11</td>
+                    <td>주식회사 CS</td>
+                    <td>정부 SI프로젝트 수행</td>
+                    <td>전자정부 프레임워크를 활용한 각종 SI프로젝트 수행</td>
+                </tr>
+                <tr>
+                    <td>2020.04 ~ 2021.11</td>
+                    <td>주식회사 CS</td>
+                    <td>MeerCOP</td>
+                    <td>노트북 도난방지 서비스</td>
+                </tr>
+            </table>
+            <p id="portfolio" >
+                <i class="fa-solid fa-arrow-right"></i>&nbsp프로젝트 수행 상세내역: <a href="https://fierce-aura-689.notion.site/0bcde357bba1460fab9a8bb6a0f4ba01?v=a3aef070491c449e8b8ba344813dd511&pvs=4">노션링크</a>
+            </p>
+        </section>
+
+        <section>
+            <h2><i class="fa-solid fa-graduation-cap"></i>Education</h2>
+            <hr>
+            <table class="common">
+                <tr>
+                    <th>기간</th>
+                    <th>교육기관명</th>
+                    <th>상태</th>
+                    <th>전공</th>
+                </tr>
+                <tr>
+                    <td>2013.09 ~ 2015.01</td>
+                    <td>성균나노과학기술원</td>
+                    <td>중퇴</td>
+                    <td>나노과학기술학과 (STM 연구)</td>
+                </tr>
+                <tr>
+                    <td>2009.03 ~ 2013.08</td>
+                    <td>성균관대학교</td>
+                    <td>졸업</td>
+                    <td>물리학과</td>
+                </tr>
+                <tr>
+                    <td>2007.03 ~ 2009.02</td>
+                    <td>제주과학고등학교</td>
+                    <td>졸업</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2><i class="fa-solid fa-square-phone"></i>Contact</h2>
+            <hr>
+            <table class="contact">
+                <tr>
+                    <th><i class="fa fa-envelope"></i></th>
+                    <td><a href="mailto:dboo.studio@example.com">E-Mail</a></td>
+<!--                </tr>-->
+<!--                <tr>-->
+                    <th><i class="fa-brands fa-square-github"></i></th>
+                    <td><a href="https://github.com/dboostudio">Github</a></td>
+<!--                </tr>-->
+<!--                <tr>-->
+                    <th><i class="fa-brands fa-linkedin"></i></th>
+                    <td><a href="https://www.linkedin.com/in/%EB%8C%80%ED%99%98-%EB%B6%80-694b1922b/">LinkedIn</a></td>
+<!--                </tr>-->
+<!--                <tr>-->
+                    <th><i class="fa-regular fa-window-maximize"></i></th>
+                    <td><a href="https://dboo.kr">dboo.kr</a></td>
+                </tr>
+            </table>
+        </section>
+    </main>
 
 
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
-
 
 </body>
 </html>

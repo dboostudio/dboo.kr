@@ -138,24 +138,36 @@ li a:hover {
     text-decoration: underline;
 }
 
-/* resume */
+/* home (whoami) */
 table {
     text-align: left;
 }
 
-table th {
+table.common th {
     font-size: 1.1em;
     padding: 5px 20px;
 }
-table td {
+table.common td {
     padding: 5px 20px;
+}
+
+table.contact td{
+    padding: 0 20px 0 5px;
 }
 
 img#profile {
     width: 200px;
-    margin: 0 30px 0 0;
+    margin: 0 20px 0 0;
 }
 
 p#portfolio{
     padding: 10px 0 0 20px;
+}
+
+h2 i {
+    margin: 0 10px 0 5px;
+}
+
+table li{
+    font-size: 1em;
 }
