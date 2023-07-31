@@ -4,17 +4,19 @@
 <head th:fragment="head">
     <meta charset="UTF-8">
     <title>DBOO'S_LOG</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+
     <script th:src="@{/common.js}"></script>
     <script src="https://kit.fontawesome.com/6d9053e08f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <header th:fragment="header">
     <h1>DBOO'S_LOG</h1>
     <nav>
         <a th:href="@{/}">WHOAMI</a>
-<!--        <a th:href="@{post}">POST</a>-->
         <a th:href="@{visit}">VISIT</a>
+        <a th:href="@{post}">POST</a>
     </nav>
 </header>
 

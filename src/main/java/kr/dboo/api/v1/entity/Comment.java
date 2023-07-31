@@ -3,14 +3,7 @@ package kr.dboo.api.v1.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -29,6 +22,7 @@ public class Comment {
     private Long id;
     private String name;
     private String encodedPassword;
+    @Lob
     private String comment;
     @CreatedDate
     private LocalDateTime createdAt;

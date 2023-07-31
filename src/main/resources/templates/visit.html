@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments::head}"></head>
+<link rel="stylesheet" th:href="@{/css/visit.css}">
 
 <body>
 
@@ -16,12 +17,11 @@
                 <textarea id="comment" rows="10" cols="50" placeholder="코멘트"></textarea>
                 <input id="submit" type="submit" value="남기기!"> </input>
             </div>
-            <h2>방명록</h2>
-            <section th:each="comment : ${comments}">
-                <h3 th:text="${comment.name}"></h3>
-                <p th:text="${comment.comment}"></p>
-            </section>
-
+        </section>
+        <section id="showcase" th:each="comment, iter : ${comments}">
+            <h2 th:if="${iter.index}==0">방명록</h2>
+            <h3 th:text="${comment.name}"></h3>
+            <p id="comment-text" th:text="${comment.comment}"></p>
         </section>
     </main>
 

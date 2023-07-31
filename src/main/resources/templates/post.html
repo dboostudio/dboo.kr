@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments::head}"></head>
+<link rel="stylesheet" th:href="@{/css/post.css}">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <body>
 
@@ -8,16 +10,33 @@
     <header th:replace="~{fragments::header}"></header>
 
     <h2>Posts</h2>
-    <section id="posts">
-        <ul class="post-list">
-            <li><a href="#">This is my first post</a></li>
-            <li><a href="#">This is my second post</a></li>
-            <li><a href="#">This is my third post</a></li>
-        </ul>
+    <section id="posts" th:each="post : ${posts}" th:attr="data-post_id=${post.id}">
+        <h3 th:text="${post.title}"></h3>
+        <div class="post-content" th:attr="data-post_content=${post.content}"></div>
     </section>
 
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
 
 </body>
+<script>
+
+    function afterDOMLoad() {
+        document.querySelectorAll('.post-content').forEach(
+            element => {
+
+            }
+        )
+
+        document.querySelectorAll('#posts').forEach(
+            section => {
+                const postId = section.dataset.post_id;
+                console.log(postId);
+                section.addEventListener('click', () => window.location.href='/post/'+postId);
+            }
+        )
+    }
+
+    document.addEventListener('DOMContentLoaded', afterDOMLoad())
+</script>
 </html>

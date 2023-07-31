@@ -1,0 +1,7 @@
+section#posts{
+    background-color: aquamarine;
+}
+
+section#posts:hover{
+    background-color: lightcoral;
+}
