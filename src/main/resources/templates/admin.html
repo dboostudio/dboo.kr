@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}"></head>
+<link rel="stylesheet" th:href="@{/css/admin.css}">
+
+
+<body>
+<div class="container">
+    <header th:replace="~{fragments::header}"></header>
+
+    <main>
+        <section>
+            <div class="left">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="submit" value="저장하기" type="submit">
+                                <textarea type="text" id="title" placeholder="제목"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea type="text" id="content" placeholder="본문"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right" id="renderMarkdown">
+                <p>render!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer th:replace="~{fragments::footer}"></footer>
+</div>
+
+
+</body>
+<script>
+    document.getElementById('content').addEventListener("input", (event) => {
+        renderMarkdown(event);
+    });
+    function renderMarkdown(event) {
+        document.getElementById('renderMarkdown').innerHTML = marked.parse(event.target.value);
+    }
+
+    let button = document.getElementById('submit');
+    button.addEventListener("click", saveComment);
+
+    function saveComment() {
+        button.removeEventListener("click", saveComment);
+        let uri = '/api/v1/post';
+        let title = document.getElementById('title').value;
+        let content = document.getElementById('content').value;
+        let data = {
+            'title' : title,
+            'content' : content
+        };
+
+        postData(uri, data)
+            .then(() => {
+                alert("저장 성공");
+            }).catch(() =>{
+            button.addEventListener("click", saveComment)
+        });
+
+    }
+
+</script>
+</html>

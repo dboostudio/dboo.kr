@@ -1,0 +1,76 @@
+/* common */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+nav {
+    margin: 20px 0 0 0;
+    list-style: none;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+nav a{
+    padding: 10px;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #fff;
+
+    width: 130px;
+    border-width: 1px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 10px;
+}
+nav:hover{
+    color: #333333;
+}
+nav a:hover{
+    color: #cccccc;
+    border-color: #cccccc;
+}
+
+main {
+    margin-top: 20px;
+}
+
+aside {
+    background-color: #eee;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+article {
+    /*border: 1px solid #ccc;*/
+    padding: 20px;
+}
+
+section {
+    width: auto;
+    display: block;
+    padding: 20px;
+    overflow: hidden;
+    height: auto;
+}

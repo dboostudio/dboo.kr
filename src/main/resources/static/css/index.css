@@ -1,0 +1,74 @@
+
+h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 0;
+}
+section {
+    padding: 20px;
+    /*margin: 10px;*/
+}
+
+hr {
+    margin: 5px 0 10px 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+table {
+    text-align: left;
+}
+
+th{
+    font-size: 1.2em;
+}
+
+td{
+    font-size: 1em;
+}
+
+table.common th {
+    padding: 5px 20px;
+}
+table.common td {
+    padding: 5px 20px;
+}
+
+table.contact td{
+    padding: 0 20px 0 5px;
+}
+
+img#profile {
+    width: 200px;
+    margin: 0 20px 0 0;
+    border-radius: 20px;
+}
+
+p#portfolio{
+    padding: 10px 0 0 20px;
+}
+
+h2 i {
+    margin: 0 10px 0 5px;
+}
+
+table li{
+    font-size: 1em;
+}

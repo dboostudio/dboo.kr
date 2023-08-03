@@ -1,5 +1,4 @@
-const baseurl = "https://dboo.kr";
-// const baseurl = "http://localhost:8080";
+const baseurl = window.location.protocol + "//" + window.location.host;
 
 async function postData(uri, data){
     let url = baseurl + uri;
@@ -11,5 +10,13 @@ async function postData(uri, data){
         body: JSON.stringify(data),
     }
     const response = await fetch(url, payload);
-    return response.json();
+    if(response.ok)
+        return response;
+    else{
+        const json = await response.json();
+        let alertMessage = "";
+        json.forEach(e => alertMessage += e.defaultMessage + "\n");
+        alert(alertMessage);
+        throw new Error();
+    }
 }

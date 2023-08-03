@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-    <meta charset="UTF-8">
-    <title>DBOO'S_LOG</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
-    <script th:src="@{/common.js}"></script>
-</head>
+<head th:replace="~{fragments::head}"></head>
+<link rel="stylesheet" th:href="@{/css/visit.css}">
 
 <body>
 
@@ -13,22 +9,19 @@
     <header th:replace="~{fragments::header}"></header>
 
     <main>
-        <!-- Comments Page -->
         <section id="comments">
-            <h2>방명록 남기기</h2>
-            <form>
-                <input type="text" id="name" placeholder="Your Name">
-                <input type="email" id="email" placeholder="Your Email">
-                <textarea id="comment" rows="10" cols="50" placeholder="Your Comment"></textarea>
-                <button type="submit" onclick="saveComment(); location.href='/visit?'"> 남기기! </button>
-            </form>
-            <h2>방명록</h2>
-            <p>This is a section where visitors can leave comments about our website.</p>
-            <section th:each="comment : ${comments}">
-                <h3 th:text="${comment.name}"></h3>
-                <p th:text="${comment.comment}"></p>
-            </section>
-
+            <div id="form">
+                <p>방명록 작성하기</p>
+                <input type="text" id="name" placeholder="이름">
+                <input type="email" id="email" placeholder="이메일">
+                <textarea id="comment" rows="10" cols="50" placeholder="코멘트"></textarea>
+                <input id="submit" type="submit" value="남기기!"> </input>
+            </div>
+        </section>
+        <section id="showcase" th:each="comment, iter : ${comments}">
+            <h2 th:if="${iter.index}==0">방명록</h2>
+            <h3 th:text="${comment.name}"></h3>
+            <p id="comment-text" th:text="${comment.comment}"></p>
         </section>
     </main>
 
@@ -37,8 +30,11 @@
 </body>
 
 <script>
+    let button = document.getElementById('submit');
+    button.addEventListener("click", saveComment);
 
     function saveComment() {
+        button.removeEventListener("click", saveComment);
         let uri = '/api/v1/comment';
         let name = document.getElementById('name').value;
         let email = document.getElementById('email').value;
@@ -48,7 +44,14 @@
             'email' : email,
             'comment' : comment
         };
-        postData(uri, data).then();
+
+        postData(uri, data)
+        .then(() => {
+            window.location.reload();
+        }).catch(() =>{
+            button.addEventListener("click", saveComment)
+        });
+
     }
 
 

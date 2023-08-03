@@ -1,4 +1,4 @@
-package kr.dboo.api.v1.payload;
+package kr.dboo.api.payload;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -6,12 +6,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class SaveCommentRequest {
+public class LoginRequestPayload {
 
     @NotBlank
-    private String name;
+    private String username;
+
     @NotBlank
-    private String email;
-    @NotBlank
-    private String comment;
+    private String password;
+
 }

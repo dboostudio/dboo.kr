@@ -1,13 +1,9 @@
-package kr.dboo.api.v1.controller;
+package kr.dboo.api.controller;
 
 import jakarta.validation.Valid;
-import kr.dboo.api.v1.entity.Comment;
-import kr.dboo.api.v1.payload.SaveCommentRequest;
-import kr.dboo.api.v1.service.CommentService;
+import kr.dboo.api.payload.SaveCommentRequest;
+import kr.dboo.api.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

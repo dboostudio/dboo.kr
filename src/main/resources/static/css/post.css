@@ -1,0 +1,28 @@
+
+
+section div#posts{
+    width: 70%;
+    height: auto;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 40px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #222222;
+    border-radius: 10px;
+
+}
+
+section div#posts:hover {
+    background-color: lightcoral;
+}
+
+section div#summary {
+    width: 100%;
+    font-size: 0.5em;
+    height: 100px;
+
+    background-color: #007bff;
+}
