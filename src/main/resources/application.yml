@@ -1,6 +1,7 @@
 # Custom Resource
 dboo:
-  admin.password: ${DBOO_PASSWORD:password}
+  admin:
+    password: ${DBOO_PASSWORD:password}
 
 # SERVER
 server:

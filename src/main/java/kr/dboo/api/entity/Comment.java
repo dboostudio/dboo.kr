@@ -1,4 +1,4 @@
-package kr.dboo.api.v1.entity;
+package kr.dboo.api.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

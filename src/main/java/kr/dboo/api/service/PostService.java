@@ -1,8 +1,8 @@
-package kr.dboo.api.v1.service;
+package kr.dboo.api.service;
 
-import kr.dboo.api.v1.entity.Post;
-import kr.dboo.api.v1.payload.SavePostRequest;
-import kr.dboo.api.v1.repository.PostRepository;
+import kr.dboo.api.payload.SavePostRequest;
+import kr.dboo.api.repository.PostRepository;
+import kr.dboo.api.entity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

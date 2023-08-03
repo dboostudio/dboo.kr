@@ -1,11 +1,8 @@
-package kr.dboo.api.v1.controller;
+package kr.dboo.api.controller;
 
 import jakarta.validation.Valid;
-import kr.dboo.api.v1.payload.SaveCommentRequest;
-import kr.dboo.api.v1.payload.SavePostRequest;
-import kr.dboo.api.v1.repository.PostRepository;
-import kr.dboo.api.v1.service.CommentService;
-import kr.dboo.api.v1.service.PostService;
+import kr.dboo.api.payload.SavePostRequest;
+import kr.dboo.api.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

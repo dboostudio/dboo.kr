@@ -1,5 +1,4 @@
-// const baseurl = "https://dboo.kr";
-const baseurl = "http://localhost:8080";
+const baseurl = window.location.protocol + "//" + window.location.host;
 
 async function postData(uri, data){
     let url = baseurl + uri;
@@ -20,5 +19,4 @@ async function postData(uri, data){
         alert(alertMessage);
         throw new Error();
     }
-
 }

@@ -1,8 +1,8 @@
-package kr.dboo.api.v1.service;
+package kr.dboo.api.service;
 
-import kr.dboo.api.v1.entity.Comment;
-import kr.dboo.api.v1.payload.SaveCommentRequest;
-import kr.dboo.api.v1.repository.CommentRepository;
+import kr.dboo.api.entity.Comment;
+import kr.dboo.api.payload.SaveCommentRequest;
+import kr.dboo.api.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

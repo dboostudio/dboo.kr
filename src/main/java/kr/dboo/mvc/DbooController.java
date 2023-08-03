@@ -1,16 +1,18 @@
-package kr.dboo;
+package kr.dboo.mvc;
 
-import kr.dboo.api.v1.entity.Comment;
-import kr.dboo.api.v1.entity.Post;
-import kr.dboo.api.v1.repository.CommentRepository;
-import kr.dboo.api.v1.service.CommentService;
-import kr.dboo.api.v1.service.PostService;
+import kr.dboo.api.entity.Comment;
+import kr.dboo.api.entity.Post;
+import kr.dboo.api.service.CommentService;
+import kr.dboo.api.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.net.InetAddress;
 import java.util.List;
@@ -21,6 +23,8 @@ public class DbooController {
 
     private final CommentService commentService;
     private final PostService postService;
+    @Value("${dboo.admin.password}")
+    private String adminPassword;
 
     @GetMapping
     public String home(Model model) {
@@ -59,9 +63,17 @@ public class DbooController {
     }
 
     @GetMapping("/admin")
-    public String admin(Model model) {
+    public ModelAndView admin(Model model, @RequestParam("password") String password) {
+        if(!password.equals(adminPassword))
+            return new ModelAndView("redirect:login");
         addDefaultModelAttributes(model);
-        return "admin";
+        return new ModelAndView("admin");
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        addDefaultModelAttributes(model);
+        return "login";
     }
 
     @SneakyThrows

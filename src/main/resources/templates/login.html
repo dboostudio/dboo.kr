@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}"></head>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+
+
+<body>
+<div class="container">
+    <header th:replace="~{fragments::header}"></header>
+
+    <main>
+        <section>
+            <input id="userId" type="text" placeholder="아이디">
+            <input id="password" type="text" placeholder="비밀번호">
+            <input id="submit" type="submit" value="로그인">
+        </section>
+
+    </main>
+
+    <footer th:replace="~{fragments::footer}"></footer>
+</div>
+
+
+</body>
+<script>
+
+    let button = document.getElementById('submit');
+    button.addEventListener("click", login);
+    let passwordInput = document.getElementById('password');
+    let passwordInput = document.getElementById('userId');
+    passwordInput.addEventListener("keyup", (event) => {
+        if(event.key=="Enter"){
+            login();
+        }
+    })
+
+    function login() {
+        let password = document.getElementById('password').value;
+        button.removeEventListener("click", login);
+        window.location.href="/admin?password="+password;
+    }
+
+</script>
+</html>

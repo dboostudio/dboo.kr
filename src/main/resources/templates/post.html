@@ -2,18 +2,21 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments::head}"></head>
 <link rel="stylesheet" th:href="@{/css/post.css}">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <body>
 
 <div class="container">
     <header th:replace="~{fragments::header}"></header>
 
-    <h2>Posts</h2>
-    <section id="posts" th:each="post : ${posts}" th:attr="data-post_id=${post.id}">
-        <h3 th:text="${post.title}"></h3>
-        <div class="post-content" th:attr="data-post_content=${post.content}"></div>
+    <section>
+        <h2>Posts</h2>
+        <hr>
+        <div id="posts" th:each="post : ${posts}" th:attr="data-post_id=${post.id}">
+            <h2 th:text="${post.title}"></h2>
+            <div id="summary" th:attr="data-post_content=${post.content}"></div>
+        </div>
     </section>
+
 
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
@@ -22,21 +25,19 @@
 <script>
 
     function afterDOMLoad() {
-        document.querySelectorAll('.post-content').forEach(
+        document.querySelectorAll('div#summary').forEach(
             element => {
-
+                element.innerHTML = marked.parse(element.dataset.post_content);
             }
         )
 
-        document.querySelectorAll('#posts').forEach(
-            section => {
-                const postId = section.dataset.post_id;
-                console.log(postId);
-                section.addEventListener('click', () => window.location.href='/post/'+postId);
+        document.querySelectorAll('div#posts').forEach(
+            post => {
+                post.addEventListener('click', () => window.location.href='/post/'+post.dataset.post_id);
             }
         )
     }
 
-    document.addEventListener('DOMContentLoaded', afterDOMLoad())
+    document.addEventListener('DOMContentLoaded', afterDOMLoad());
 </script>
 </html>

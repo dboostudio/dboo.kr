@@ -1,4 +1,4 @@
-package kr.dboo.api.v1.payload;
+package kr.dboo.api.payload;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
