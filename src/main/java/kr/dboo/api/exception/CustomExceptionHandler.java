@@ -16,6 +16,7 @@ import java.util.Map;
 public class CustomExceptionHandler {
     @ExceptionHandler(Exception.class)
     protected ResponseEntity handleException(Exception e) {
+        e.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
