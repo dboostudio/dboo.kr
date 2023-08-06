@@ -3,6 +3,7 @@ package kr.dboo;
 import kr.dboo.api.entity.Post;
 import kr.dboo.api.entity.Role;
 import kr.dboo.api.entity.User;
+import kr.dboo.api.repository.CommentRepository;
 import kr.dboo.api.repository.PostRepository;
 import kr.dboo.security.repository.UserRepository;
 import kr.dboo.security.service.AuthenticationService;
@@ -22,12 +23,16 @@ public class InitRunner implements ApplicationRunner {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
     @Value("${dboo.admin.password}")
     private String password;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+        commentRepository.deleteAll();
+        postRepository.deleteAll();
 
         String email = "dboo.studio@gmail.com";
         if(!userRepository.findByEmail(email).isPresent()) {

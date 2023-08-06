@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}"></head>
+<link rel="stylesheet" th:href="@{/css/post-edit.css}">
+
+
+<body>
+<div class="container">
+    <header th:replace="~{fragments::header}"></header>
+
+    <main>
+        <section>
+            <div class="left">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="submit" value="저장하기" type="submit" th:attr="data-post_id=${post.id}">
+                                <textarea type="text" id="title" placeholder="제목" th:text="${post.title}"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea type="text" id="content" placeholder="본문" th:text="${post.content}"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right" id="renderMarkdown">
+                <p>render!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer th:replace="~{fragments::footer}"></footer>
+</div>
+
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        renderMarkdown();
+    })
+
+    document.getElementById('content').addEventListener("input", () => {
+        renderMarkdown();
+    });
+
+    function renderMarkdown() {
+        let target = document.getElementById('content');
+        document.getElementById('renderMarkdown').innerHTML = marked.parse(target.value);
+    }
+
+    let button = document.getElementById('submit');
+    button.addEventListener("click", () => savePost(button.dataset.post_id));
+
+    function savePost() {
+        button.removeEventListener("click", savePost);
+        let uri = '/api/post';
+        let id = document.getElementById('submit').dataset.post_id;
+        let title = document.getElementById('title').value;
+        let content = document.getElementById('content').value;
+        let data = {
+            'id' : id,
+            'title' : title,
+            'content' : content
+        };
+
+        patchData(uri, data)
+            .then(() => {
+                alert("저장 성공");
+                location.href='/post';
+            }).catch(() =>{
+            button.addEventListener("click", savePost)
+        });
+
+    }
+
+</script>
+</html>

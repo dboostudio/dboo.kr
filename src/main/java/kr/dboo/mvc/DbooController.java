@@ -47,6 +47,25 @@ public class DbooController {
         return "post-detail";
     }
 
+    @GetMapping("/post/create")
+    public String postCreate(
+            Model model
+    ) {
+        addDefaultModelAttributes(model);
+        return "post-create";
+    }
+
+    @GetMapping("/post/edit/{id}")
+    public String postEdit(
+            Model model,
+            @PathVariable Long id
+    ) {
+        addDefaultModelAttributes(model);
+        Post post = postService.getPostById(id);
+        model.addAttribute("post", post);
+        return "post-edit";
+    }
+
     @GetMapping("/visit")
     public String visit(Model model) {
         addDefaultModelAttributes(model);
