@@ -26,8 +26,50 @@ async function fetch_post(uri, data){
     return await fetch(url, payload);
 }
 
+async function fetch_patch(uri, data){
+    let token = localStorage.getItem("token");
+    let url = baseurl + uri;
+    let payload = {
+        method: 'PATCH',
+        headers: {
+            "Content-Type" : "application/json",
+        },
+        body: JSON.stringify(data),
+    }
+    if (token != null)
+        payload.headers.Authorization = `Bearer ${token}`;
+    return await fetch(url, payload);
+}
+
+async function fetch_delete(uri){
+    let token = localStorage.getItem("token");
+    let url = baseurl + uri;
+    let payload = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type" : "application/json",
+        }
+    }
+    if (token != null)
+        payload.headers.Authorization = `Bearer ${token}`;
+    return await fetch(url, payload);
+}
+
 async function postData(uri, data){
     const response = await fetch_post(uri, data);
+    if(response.ok)
+        return response;
+    else{
+        const json = await response.json();
+        let alertMessage = "";
+        json.forEach(e => alertMessage += e.defaultMessage + "\n");
+        alert(alertMessage);
+        throw new Error();
+    }
+}
+
+async function patchData(uri, data){
+    const response = await fetch_patch(uri, data);
     if(response.ok)
         return response;
     else{

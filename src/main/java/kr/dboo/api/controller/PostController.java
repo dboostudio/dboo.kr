@@ -1,10 +1,13 @@
 package kr.dboo.api.controller;
 
 import jakarta.validation.Valid;
+import kr.dboo.api.payload.CreatePostRequest;
 import kr.dboo.api.payload.SavePostRequest;
 import kr.dboo.api.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,10 +30,29 @@ public class PostController {
     }
 
     @PostMapping
+    @Secured("ADMIN")
+    public ResponseEntity createPost(
+            @RequestBody @Valid CreatePostRequest createPostRequest
+    ){
+        postService.createPost(createPostRequest);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping
+    @Secured("ADMIN")
     public ResponseEntity savePost(
             @RequestBody @Valid SavePostRequest savePostRequest
     ){
         postService.savePost(savePostRequest);
+        return ResponseEntity.ok().build();
+    }
+
+    @Secured("ADMIN")
+    @DeleteMapping("/{id}")
+    public ResponseEntity deletePost(
+            @PathVariable Long id
+    ){
+        postService.deletePost(id);
         return ResponseEntity.ok().build();
     }
 }

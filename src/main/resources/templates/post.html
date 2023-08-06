@@ -9,12 +9,16 @@
 <div class="container">
     <header th:replace="~{fragments::header}"></header>
 
+    <section id="create">
+        <i class="fa-solid fa-square-plus" onclick="location.href='/post/create'"></i>
+    </section>
+
     <section id="list" th:each="post : ${posts}">
         <div id="admin">
-            <i id="edit" class="fa-solid fa-pen-to-square" onclick="edit()"></i>
-            <i id="delete" class="fa-solid fa-trash"></i>
+            <i id="edit" class="fa-solid fa-pen-to-square" th:attr="data-post_id=${post.id}"></i>
+            <i id="delete" class="fa-solid fa-trash" th:attr="data-post_id=${post.id}"></i>
         </div>
-        <div id="posts"  th:attr="data-post_id=${post.id}">
+        <div id="posts" th:attr="data-post_id=${post.id}">
             <h2 th:text="${post.title}"></h2>
             <div id="summary" th:attr="data-post_content=${post.content}"></div>
         </div>
@@ -23,14 +27,25 @@
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
 
+<div id="confirmModal" class="modal">
+    <div class="modal-content">
+        <p>게시글을 정말 삭제하시겠습니까?</p>
+        <button id="confirmDelete">삭제</button>
+        <button id="cancelDelete">취소</button>
+    </div>
+</div>
 </body>
 <script>
     function afterDOMLoad() {
+
+        // if admin, render admin buttons
         let user = checkToken();
-        if(user!= null && user.ROLE == "ADMIN")
+        if(user!= null && user.ROLE == "ADMIN") {
             document.querySelectorAll("div#admin").forEach(
                 element => element.style.display = "flex"
             );
+            document.getElementById("create").style.display = "flex";
+        }
 
         document.querySelectorAll('div#summary').forEach(
             element => {
@@ -43,12 +58,43 @@
                 post.addEventListener('click', () => window.location.href='/post/'+post.dataset.post_id);
             }
         )
+
+        // edit icon click event
+        document.querySelectorAll('#edit').forEach(element => {
+            element.addEventListener('click', () => {
+                window.location.href = "/post/edit/"+element.dataset.post_id;
+            })
+        })
+
+        // delete icon click event
+        document.querySelectorAll('#delete').forEach(element => {
+            element.addEventListener('click', function () {
+                let modal = document.getElementById('confirmModal');
+                modal.dataset.post_id = element.dataset.post_id
+                modal.style.display = 'block';
+            })
+        });
+
+        // confirm delete click event
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            let modal = document.getElementById('confirmModal');
+            deletePost(modal.dataset.post_id);
+            modal.style.display = 'none';
+        });
+
+        // cancel delete click event
+        document.getElementById('cancelDelete').addEventListener('click', function() {
+            document.getElementById('confirmModal').style.display = 'none';
+        });
     }
 
     document.addEventListener('DOMContentLoaded', afterDOMLoad);
 
-    function edit(){
-        alert("edit!");
+    function deletePost(){
+        fetch_delete("/api/post")
+            .then(() => window.location.href="/post")
     }
+
+
 </script>
 </html>
