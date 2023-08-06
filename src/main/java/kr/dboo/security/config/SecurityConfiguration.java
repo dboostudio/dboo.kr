@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("POST", "/api/comment").permitAll()
-                        .requestMatchers("/", "/index", "/post/**", "/visit/**", "/login", "/admin").permitAll()
+                        .requestMatchers("/", "/index", "/post/**", "/visit/**", "/login", "/admin", "/sign-up").permitAll()
                         .requestMatchers("/favicon.ico", "/css/**", "/js/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
