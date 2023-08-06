@@ -21,10 +21,9 @@
 </body>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var title = /*[[${title}]]*/ '제목';
-    var content = /*[[${content}]]*/ 'default';
+    var post = /*[[${post}]]*/ 'post';
     /*]]>*/
-    document.getElementById('title').innerHTML = title;
-    document.getElementById('content').innerHTML = marked.parse(content);
+    document.getElementById('title').innerHTML = post.title;
+    document.getElementById('content').innerHTML = marked.parse(post.content);
 </script>
 </html>

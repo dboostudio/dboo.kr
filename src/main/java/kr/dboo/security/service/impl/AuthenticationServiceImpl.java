@@ -1,9 +1,9 @@
 package kr.dboo.security.service.impl;
 
-import kr.dboo.security.payload.SignUp;
-import kr.dboo.security.payload.SignIn;
 import kr.dboo.api.entity.Role;
 import kr.dboo.api.entity.User;
+import kr.dboo.security.payload.SignIn;
+import kr.dboo.security.payload.SignUp;
 import kr.dboo.security.repository.UserRepository;
 import kr.dboo.security.service.AuthenticationService;
 import kr.dboo.security.service.JwtService;
@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     @Override
-    public String signUp(SignUp request) {
+    public void signUp(SignUp request) {
         User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -32,7 +34,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
-        return jwtService.generateToken(user);
     }
 
     @Override
@@ -45,6 +46,5 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw e;
         }
         return jwtService.generateToken(user);
-
     }
 }

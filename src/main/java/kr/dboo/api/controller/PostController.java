@@ -19,7 +19,12 @@ public class PostController {
         return ResponseEntity.ok(postService.getAllPostList());
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity getPost(
+            @PathVariable Long id
+    ){
+        return ResponseEntity.ok(postService.getPostById(id));
+    }
 
     @PostMapping
     public ResponseEntity savePost(
