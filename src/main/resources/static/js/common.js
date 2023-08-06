@@ -39,11 +39,23 @@ async function postData(uri, data){
     }
 }
 
-async function login(email, password) {
+async function signUp(data) {
+    let uri = "/api/auth/sign-up";
+
+    return await fetch_post(uri, data)
+        .then(response => {
+            if(!response.ok) {
+                throw Error();
+            }
+            return response;
+        });
+}
+
+async function signIn(data) {
     localStorage.clear();
     let uri = "/api/auth/sign-in";
 
-    return await fetch_post(uri, {"email": email, "password": password})
+    return await fetch_post(uri, data)
         .then(response => {
             if(!response.ok) {
                 alert("계정 혹은 비밀번호가 일치하지 않습니다.")
@@ -57,7 +69,7 @@ async function login(email, password) {
         });
 }
 
-function logout(){
+function signOut(){
     localStorage.clear();
     window.location.href = "/";
 }

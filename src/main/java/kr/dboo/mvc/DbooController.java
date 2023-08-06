@@ -61,6 +61,12 @@ public class DbooController {
         return new ModelAndView("admin");
     }
 
+    @GetMapping("/sign-up")
+    public String signUp(Model model) {
+        addDefaultModelAttributes(model);
+        return "sign-up";
+    }
+
     @GetMapping("/login")
     public String login(Model model) {
         addDefaultModelAttributes(model);

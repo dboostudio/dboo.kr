@@ -21,9 +21,12 @@ header div#header-container{
     justify-content: space-between;
 }
 
-#header-login, #header-logout {
+header i {
     font-size: 1.4em;
     padding: 10px;
+}
+
+#header-login, #header-logout {
     display: none;
 }
 

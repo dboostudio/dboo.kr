@@ -26,7 +26,8 @@
 </body>
 <script>
     function afterDOMLoad() {
-        if(checkToken().ROLE == "ADMIN")
+        let user = checkToken();
+        if(user!= null && user.ROLE == "ADMIN")
             document.querySelectorAll("div#admin").forEach(
                 element => element.style.display = "flex"
             );
