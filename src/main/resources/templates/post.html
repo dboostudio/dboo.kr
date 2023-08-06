@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="~{fragments::head}"></head>
 <link rel="stylesheet" th:href="@{/css/post.css}">
 
@@ -8,23 +9,28 @@
 <div class="container">
     <header th:replace="~{fragments::header}"></header>
 
-    <section>
-        <h2>Posts</h2>
-        <hr>
-        <div id="posts" th:each="post : ${posts}" th:attr="data-post_id=${post.id}">
+    <section id="list" th:each="post : ${posts}">
+        <div id="admin">
+            <i id="edit" class="fa-solid fa-pen-to-square" onclick="edit()"></i>
+            <i id="delete" class="fa-solid fa-trash"></i>
+        </div>
+        <div id="posts"  th:attr="data-post_id=${post.id}">
             <h2 th:text="${post.title}"></h2>
             <div id="summary" th:attr="data-post_content=${post.content}"></div>
         </div>
     </section>
-
 
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
 
 </body>
 <script>
-
     function afterDOMLoad() {
+        if(checkToken().ROLE == "ADMIN")
+            document.querySelectorAll("div#admin").forEach(
+                element => element.style.display = "flex"
+            );
+
         document.querySelectorAll('div#summary').forEach(
             element => {
                 element.innerHTML = marked.parse(element.dataset.post_content);
@@ -38,6 +44,10 @@
         )
     }
 
-    document.addEventListener('DOMContentLoaded', afterDOMLoad());
+    document.addEventListener('DOMContentLoaded', afterDOMLoad);
+
+    function edit(){
+        alert("edit!");
+    }
 </script>
 </html>

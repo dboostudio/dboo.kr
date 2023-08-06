@@ -1,11 +1,27 @@
-
-
-section div#posts{
+section{
     width: 70%;
+    margin: 0 auto 10px;
+}
+
+div#admin{
+    display: none;
+    justify-content: flex-end;
+    margin: 0 0 10px 0;
+}
+
+i {
+    font-size: 1em;
+    margin-left: 10px;
+}
+
+i:hover {
+    z-index: 2;
+    color: lightblue;
+}
+
+div#posts{
+    z-index: 1;
     height: auto;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
     padding: 0 40px;
 
     border-width: 1px;
@@ -25,4 +41,5 @@ section div#summary {
     height: 100px;
 
     background-color: #007bff;
+    overflow: hidden;
 }

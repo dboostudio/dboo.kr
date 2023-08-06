@@ -10,7 +10,7 @@
 
     <main>
         <section>
-            <input id="userId" type="text" placeholder="아이디">
+            <input id="email" type="text" placeholder="이메일" autofocus="autofocus">
             <input id="password" type="text" placeholder="비밀번호">
             <input id="submit" type="submit" value="로그인">
         </section>
@@ -25,19 +25,25 @@
 <script>
 
     let button = document.getElementById('submit');
-    button.addEventListener("click", login);
+    button.addEventListener("click", signIn);
+
     let passwordInput = document.getElementById('password');
-    let passwordInput = document.getElementById('userId');
+
     passwordInput.addEventListener("keyup", (event) => {
         if(event.key=="Enter"){
-            login();
+            signIn();
         }
     })
 
-    function login() {
+    function signIn() {
+        button.removeEventListener("click", signIn);
+        let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
-        button.removeEventListener("click", login);
-        window.location.href="/admin?password="+password;
+        login(email, password).then(
+            () => window.location.href = "/"
+        ).catch(
+            () => button.addEventListener("click", signIn)
+        );
     }
 
 </script>

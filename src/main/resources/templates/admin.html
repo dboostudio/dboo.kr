@@ -48,11 +48,11 @@
     }
 
     let button = document.getElementById('submit');
-    button.addEventListener("click", saveComment);
+    button.addEventListener("click", savePost);
 
-    function saveComment() {
-        button.removeEventListener("click", saveComment);
-        let uri = '/api/v1/post';
+    function savePost() {
+        button.removeEventListener("click", savePost);
+        let uri = '/api/post';
         let title = document.getElementById('title').value;
         let content = document.getElementById('content').value;
         let data = {
@@ -64,7 +64,7 @@
             .then(() => {
                 alert("저장 성공");
             }).catch(() =>{
-            button.addEventListener("click", saveComment)
+            button.addEventListener("click", savePost)
         });
 
     }
