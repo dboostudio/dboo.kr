@@ -128,7 +128,7 @@ function parseToken() {
         // Decode the Base64 string and parse it as JSON
         const payload = JSON.parse(atob(base64));
 
-        return payload;
+        return payload.user;
     } catch (err) {
         return null;
     }
