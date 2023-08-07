@@ -60,6 +60,8 @@ public class InitRunner implements ApplicationRunner {
                            "\n" +
                            "- list 3" +
                            "\n" +
+                           "very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test very long text test" +
+                           "\n" +
                            "~~~java\n" +
                            "if( true )\n" +
                            "    System.out.println('Hello')\n" +

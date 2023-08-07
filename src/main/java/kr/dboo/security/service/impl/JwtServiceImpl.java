@@ -29,7 +29,7 @@ public class JwtServiceImpl implements JwtService {
     public String generateToken(User user) {
         return Jwts.builder()
                 .setClaims(Map.of(
-                        "ROLE", user.getRole().name()
+                        "user", user
                 ))
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
