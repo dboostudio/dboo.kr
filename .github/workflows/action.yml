@@ -32,7 +32,12 @@ jobs:
       run: docker build . -t ${{ secrets.REGISTRY_HOST }}/dboo:$(date +%s)
 
     - name: Register private registry host to docker daemon
-      run: sh ./registry.sh
+      run: |  
+        echo '#!/bin/bash' > login.sh
+        echo 'echo "{ \"insecure-registries\" : [\"$REGISTRY\"] }" | sudo tee /etc/docker/daemon.json' >> login.sh
+        echo 'sudo systemctl restart docker' >> login.sh
+        chmod +x login.sh
+        bash login.sh
 
     - name: docker login
       run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
