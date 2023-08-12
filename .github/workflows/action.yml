@@ -1,4 +1,4 @@
-name: CI
+name: Continuous Integration and Delivery
 
 on:
   push:
@@ -39,8 +39,16 @@ jobs:
         chmod +x login.sh
         bash login.sh
 
-    - name: docker login
+    - name: Login private docker registry
       run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
       
-    - name: docker push image
+    - name: Push docker image
       run: docker push ${{ secrets.REGISTRY_HOST }}/dboo:latest
+      
+    - name: Rollout Deployment
+      run: |
+        echo "${{ secrets.SSH_KEY }}" > id_rsa
+        chmod 600 id_rsa
+        ssh -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "kubectl rollout restart dboo-spring -n dboo"
+
+    
