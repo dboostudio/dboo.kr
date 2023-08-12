@@ -142,3 +142,9 @@ function checkToken() {
 }
 
 document.addEventListener('DOMContentLoaded', checkToken);
+
+// Markdown
+function renderMarkdown(source, target) {
+    target.innerHTML = marked.parse(source.value);
+    hljs.highlightAll();
+}
