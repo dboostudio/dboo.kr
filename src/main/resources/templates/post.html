@@ -42,16 +42,10 @@
         }
 
         document.querySelectorAll('div#summary').forEach(
-            element => {
-                element.innerHTML = marked.parse(element.dataset.post_content);
-            }
-        )
+            element => renderMarkdown(element.dataset.post_content, element))
 
         document.querySelectorAll('div#posts').forEach(
-            post => {
-                post.addEventListener('click', () => window.location.href='/post/'+post.dataset.post_id);
-            }
-        )
+            post => post.addEventListener('click', () => window.location.href='/post/'+post.dataset.post_id))
 
         // edit icon click event
         document.querySelectorAll('#edit').forEach(element => {
