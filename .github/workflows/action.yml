@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY: ${{ secrets.REGISTRY_HOST }}
-      KEY: ${{ secrets.SSH_KEY }}
     steps:
     - uses: actions/checkout@v3
     
@@ -45,9 +44,18 @@ jobs:
       
     - name: Push docker image
       run: docker push ${{ secrets.REGISTRY_HOST }}/dboo:latest
-      
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
     - name: Rollout Deployment
-      run: |
-        echo $KEY | tr -d '\r' > id_rsa
-        chmod 600 id_rsa
-        ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "kubectl rollout restart dboo-spring -n dboo"
+      # You may pin to the exact commit or the version.
+      # uses: fifsky/ssh-action@58b3c484be9c20cf118fd3b939a6d2cb3c769512
+      uses: fifsky/ssh-action@v0.0.6
+      with:
+        # Command to execute on the remote server.
+        command: kubectl rollout restart dboo-spring -n dboo
+        host: ${{ secrets.SSH_HOST }}
+        user: ${{ secrets.SSH_USERNAME }}
+        port: ${{ secrets.SSH_PORT }}
+        pass: ${{ secrets.SSH_PASSWORD }}
