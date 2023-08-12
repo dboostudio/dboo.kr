@@ -34,11 +34,8 @@ jobs:
 
     - name: Register private registry host to docker daemon
       run: |  
-        echo '#!/bin/bash' > login.sh
-        echo 'echo "{ \"insecure-registries\" : [\"$REGISTRY\"] }" | sudo tee /etc/docker/daemon.json' >> login.sh
-        echo 'sudo systemctl restart docker' >> login.sh
-        chmod +x login.sh
-        bash login.sh
+        echo "{ \"insecure-registries\" : [\"$REGISTRY\"] }" | sudo tee /etc/docker/daemon.json
+        echo 'sudo systemctl restart docker'
 
     - name: Login private docker registry
       run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
@@ -48,7 +45,7 @@ jobs:
       
     - name: Rollout Deployment
       run: |
-        echo "$KEY" > id_rsa
+        echo \"$KEY\" > id_rsa
         chmod 600 id_rsa
         ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "kubectl rollout restart dboo-spring -n dboo"
 
