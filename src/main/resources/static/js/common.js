@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', checkToken);
 
 // Markdown
 function renderMarkdown(source, target) {
-    target.innerHTML = marked.parse(source.value);
+    target.innerHTML = marked.parse(source);
     hljs.highlightAll();
 }
 

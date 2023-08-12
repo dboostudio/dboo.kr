@@ -25,6 +25,6 @@
     var post = /*[[${post}]]*/ 'post';
     /*]]>*/
     document.getElementById('title').innerHTML = post.title;
-    document.getElementById('content').innerHTML = marked.parse(post.content);
+    renderMarkdown(post.content, document.getElementById('content'));
 </script>
 </html>
