@@ -33,6 +33,12 @@
     <p>served by pod deployed on on-premise k8s cluster, hostname : <span th:text="${hostname}"></span></p>
 </footer>
 
-
+<div th:fragment="confirm-modal" id="confirm-modal" class="confirm-modal">
+    <div class="confirm-modal-content">
+        <p id="question"></p>
+        <button id="confirm">확인</button>
+        <button id="cancel">취소</button>
+    </div>
+</div>
 
 </html>
