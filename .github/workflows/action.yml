@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY: ${{ secrets.REGISTRY_HOST }}
+      KEY: ${{ secrets.SSH_KEY }}
     steps:
     - uses: actions/checkout@v3
     
@@ -47,6 +48,6 @@ jobs:
       
     - name: Rollout Deployment
       run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+        echo \"$KEY\" > id_rsa
         chmod 600 id_rsa
         ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "kubectl rollout restart dboo-spring -n dboo"
