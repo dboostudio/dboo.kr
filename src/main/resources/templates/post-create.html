@@ -2,6 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments::head}"></head>
 <link rel="stylesheet" th:href="@{/css/post-edit.css}">
+<link rel="stylesheet" th:href="@{/css/render-md.css}">
 
 
 <body>
@@ -10,26 +11,16 @@
 
     <main>
         <section>
-            <div class="left">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input id="submit" value="저장하기" type="submit">
-                                <textarea type="text" id="title" placeholder="제목"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <textarea type="text" id="content" placeholder="본문"></textarea>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="right" id="renderMarkdown">
+            <input id="submit" value="저장하기" type="submit">
+            <textarea type="text" id="title" placeholder="제목"></textarea>
+            <textarea type="text" id="content" placeholder="본문"></textarea>
+            <div id="render-md" class="right">
                 <p>render!</p>
             </div>
+<!--            <div id="float-div">-->
+<!--                <div class="left">-->
+<!--                </div>-->
+<!--            </div>-->
         </section>
 
     </main>
@@ -41,16 +32,17 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        renderMarkdown();
+        render();
     })
 
     document.getElementById('content').addEventListener("input", () => {
-        renderMarkdown();
+        render();
     });
 
-    function renderMarkdown() {
-        let target = document.getElementById('content');
-        document.getElementById('renderMarkdown').innerHTML = marked.parse(target.value);
+    function render() {
+        let source = document.getElementById('content');
+        let target = document.getElementById('render-md');
+        renderMarkdown(source, target);
     }
 
     let button = document.getElementById('submit');

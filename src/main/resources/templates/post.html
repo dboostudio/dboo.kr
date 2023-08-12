@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="~{fragments::head}"></head>
 <link rel="stylesheet" th:href="@{/css/post.css}">
+<link rel="stylesheet" th:href="@{/css/render-md.css}">
 
 <body>
 
@@ -20,7 +20,8 @@
         </div>
         <div id="posts" th:attr="data-post_id=${post.id}">
             <h2 th:text="${post.title}"></h2>
-            <div id="summary" th:attr="data-post_content=${post.content}"></div>
+            <hr>
+            <div id="summary" class="render-md" th:attr="data-post_content=${post.content}"></div>
         </div>
     </section>
 
@@ -40,7 +41,7 @@
 
         // if admin, render admin buttons
         let user = checkToken();
-        if(user!= null && user.ROLE == "ADMIN") {
+        if(user!= null && user.role == "ADMIN") {
             document.querySelectorAll("div#admin").forEach(
                 element => element.style.display = "flex"
             );
@@ -92,7 +93,7 @@
 
     function deletePost(){
         fetch_delete("/api/post")
-            .then(() => window.location.href="/post")
+            // .then(() => window.location.href="/post")
     }
 
 

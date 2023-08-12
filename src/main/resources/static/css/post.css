@@ -43,16 +43,26 @@ div#posts{
 }
 
 section div#posts:hover {
-    background-color: lightcoral;
+    background-color: bisque;
+    cursor: pointer;
+}
+
+section div#posts h2{
+    margin-bottom: 0;
 }
 
 section div#summary {
-    width: 100%;
-    font-size: 0.5em;
-    height: 100px;
+    font-size: 0.7em;
+    height: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
 
-    background-color: #007bff;
+    /*background-color: lightsteelblue;*/
     overflow: hidden;
+
+    border-width: 1px;
+    border-style: dashed;
 }
 
 .modal {

@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments::head}"></head>
 <link rel="stylesheet" th:href="@{/css/post-edit.css}">
-
+<link rel="stylesheet" th:href="@{/css/render-md.css}">
 
 <body>
 <div class="container">
@@ -10,25 +10,15 @@
 
     <main>
         <section>
-            <div class="left">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input id="submit" value="저장하기" type="submit" th:attr="data-post_id=${post.id}">
-                                <textarea type="text" id="title" placeholder="제목" th:text="${post.title}"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <textarea type="text" id="content" placeholder="본문" th:text="${post.content}"></textarea>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="right" id="renderMarkdown">
-                <p>render!</p>
+            <input id="submit" value="저장하기" type="submit" th:attr="data-post_id=${post.id}">
+            <textarea type="text" id="title" placeholder="제목" th:text="${post.title}"></textarea>
+            <div id="float-div">
+                <div class="left">
+                    <textarea type="text" id="content" placeholder="본문" th:text="${post.content}"></textarea>
+                </div>
+                <div id="render-md" class="right">
+                    <p>render!</p>
+                </div>
             </div>
         </section>
 
@@ -41,17 +31,19 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        renderMarkdown();
-    })
-
-    document.getElementById('content').addEventListener("input", () => {
-        renderMarkdown();
+        render();
     });
 
-    function renderMarkdown() {
-        let target = document.getElementById('content');
-        document.getElementById('renderMarkdown').innerHTML = marked.parse(target.value);
+    document.getElementById('content').addEventListener("input", () => {
+        render();
+    });
+
+    function render() {
+        let source = document.getElementById('content');
+        let target = document.getElementById('render-md');
+        renderMarkdown(source, target);
     }
+
 
     let button = document.getElementById('submit');
     button.addEventListener("click", () => savePost(button.dataset.post_id));

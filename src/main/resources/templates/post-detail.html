@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments::head}"></head>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/post.css}">
+<link rel="stylesheet" th:href="@{/css/render-md.css}">
 
 <body>
 
@@ -10,8 +11,8 @@
 
     <main>
         <section>
-        <h1 id="title"></h1>
-        <div id="content"></div>
+            <h1 id="title"></h1>
+            <div id="content" class="render-md"></div>
         </section>
     </main>
 
