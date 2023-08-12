@@ -1,8 +1,7 @@
 package kr.dboo.security.service;
 
-
-import kr.dboo.security.payload.SignUp;
 import kr.dboo.security.payload.SignIn;
+import kr.dboo.security.payload.SignUp;
 
 public interface AuthenticationService {
     /**
@@ -10,7 +9,7 @@ public interface AuthenticationService {
      * @param request
      * @return JWT Token을 리턴한다.
      */
-    String signUp(SignUp request);
+    void signUp(SignUp request);
 
     String signIn(SignIn request);
 }

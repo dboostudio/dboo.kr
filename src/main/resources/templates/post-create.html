@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}"></head>
+<link rel="stylesheet" th:href="@{/css/post-edit.css}">
+<link rel="stylesheet" th:href="@{/css/render-md.css}">
+
+
+<body>
+<div class="container">
+    <header th:replace="~{fragments::header}"></header>
+
+    <main>
+        <section>
+            <input id="submit" value="저장하기" type="submit">
+            <textarea type="text" id="title" placeholder="제목"></textarea>
+            <textarea type="text" id="content" placeholder="본문"></textarea>
+            <div id="render-md" class="right">
+                <p>render!</p>
+            </div>
+<!--            <div id="float-div">-->
+<!--                <div class="left">-->
+<!--                </div>-->
+<!--            </div>-->
+        </section>
+
+    </main>
+
+    <footer th:replace="~{fragments::footer}"></footer>
+</div>
+
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        render();
+    })
+
+    document.getElementById('content').addEventListener("input", () => {
+        render();
+    });
+
+    function render() {
+        let source = document.getElementById('content');
+        let target = document.getElementById('render-md');
+        renderMarkdown(source, target);
+    }
+
+    let button = document.getElementById('submit');
+    button.addEventListener("click", () => createPost());
+
+    function createPost() {
+        button.removeEventListener("click", createPost);
+        let uri = '/api/post';
+        let title = document.getElementById('title').value;
+        let content = document.getElementById('content').value;
+        let data = {
+            'title' : title,
+            'content' : content
+        };
+
+        // create post
+        postData(uri, data)
+            .then(() => {
+                alert("저장 성공");
+                location.href='/post';
+            }).catch(() =>{
+            button.addEventListener("click", createPost)
+        });
+
+    }
+
+</script>
+</html>

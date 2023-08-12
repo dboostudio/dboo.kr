@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Comment {
+public class Comment extends BaseEntity{
     @Id
     @GeneratedValue
     private Long id;
@@ -24,6 +24,4 @@ public class Comment {
     private String encodedPassword;
     @Lob
     private String comment;
-    @CreatedDate
-    private LocalDateTime createdAt;
 }

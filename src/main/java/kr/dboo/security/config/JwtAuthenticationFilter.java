@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kr.dboo.security.service.JwtService;
 import kr.dboo.security.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
@@ -16,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 
@@ -44,8 +44,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        final String jwt = authHeader.substring(7);;
-        final String username = jwtService.extractUserName(jwt);;
+        final String jwt = authHeader.substring(7);
+        final String username = jwtService.extractUserName(jwt);
 
         if (StringUtils.isNotEmpty(username) && SecurityContextHolder.getContext().getAuthentication() == null) {
 

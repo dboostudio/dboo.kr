@@ -1,0 +1,44 @@
+section{
+    width: 70%;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+textarea#title {
+    width: 80%;
+    font-size: 2em;
+    height: auto;
+    resize: none;
+    padding: 5px;
+}
+
+input#submit{
+    float: right;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input#submit:hover {
+    background-color: #0062cc;
+}
+
+textarea#content {
+    font-size: 1.5em;
+    width: -webkit-fill-available;
+    height: 500px;
+    resize: none;
+    padding: 10px;
+}
+
+div{
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}

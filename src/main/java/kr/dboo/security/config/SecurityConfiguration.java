@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -17,12 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.List;
-
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -32,7 +32,8 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/", "/index", "/post/**", "visit/**").permitAll()
+                        .requestMatchers("POST", "/api/comment").permitAll()
+                        .requestMatchers("/", "/index", "/post/**", "/visit/**", "/login", "/admin", "/sign-up").permitAll()
                         .requestMatchers("/favicon.ico", "/css/**", "/js/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )

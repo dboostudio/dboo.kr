@@ -2,29 +2,45 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments::head}"></head>
 <link rel="stylesheet" th:href="@{/css/post.css}">
+<link rel="stylesheet" th:href="@{/css/render-md.css}">
 
 <body>
 
 <div class="container">
     <header th:replace="~{fragments::header}"></header>
 
-    <section>
-        <h2>Posts</h2>
-        <hr>
-        <div id="posts" th:each="post : ${posts}" th:attr="data-post_id=${post.id}">
+    <section id="create">
+        <i class="fa-solid fa-square-plus" onclick="location.href='/post/create'"></i>
+    </section>
+
+    <section id="list" th:each="post : ${posts}">
+        <div id="admin">
+            <i id="edit" class="fa-solid fa-pen-to-square" th:attr="data-post_id=${post.id}"></i>
+            <i id="delete" class="fa-solid fa-trash" th:attr="data-post_id=${post.id}"></i>
+        </div>
+        <div id="posts" th:attr="data-post_id=${post.id}">
             <h2 th:text="${post.title}"></h2>
-            <div id="summary" th:attr="data-post_content=${post.content}"></div>
+            <hr>
+            <div id="summary" class="render-md" th:attr="data-post_content=${post.content}"></div>
         </div>
     </section>
 
-
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
-
+<div th:replace="~{fragments::confirm-modal}"></div>
 </body>
 <script>
-
     function afterDOMLoad() {
+
+        // if admin, render admin buttons
+        let user = checkToken();
+        if(user!= null && user.role == "ADMIN") {
+            document.querySelectorAll("div#admin").forEach(
+                element => element.style.display = "flex"
+            );
+            document.getElementById("create").style.display = "flex";
+        }
+
         document.querySelectorAll('div#summary').forEach(
             element => {
                 element.innerHTML = marked.parse(element.dataset.post_content);
@@ -36,8 +52,46 @@
                 post.addEventListener('click', () => window.location.href='/post/'+post.dataset.post_id);
             }
         )
+
+        // edit icon click event
+        document.querySelectorAll('#edit').forEach(element => {
+            element.addEventListener('click', () => {
+                window.location.href = "/post/edit/"+element.dataset.post_id;
+            })
+        })
+
+        // set delete confirm modal content
+        setConfirmModalMessage("게시글을 정말 삭제하시겠습니까?", "삭제");
+
+        // delete icon click event
+        document.querySelectorAll('#delete').forEach(element => {
+            element.addEventListener('click', function () {
+                let modal = document.getElementById('confirm-modal');
+                modal.dataset.post_id = element.dataset.post_id
+                modal.style.display = 'block';
+            })
+        });
+
+        // confirm delete click event
+        document.getElementById('confirm').addEventListener('click', function() {
+            let modal = document.getElementById('confirm-modal');
+            deletePost(modal.dataset.post_id);
+            modal.style.display = 'none';
+        });
+
+        // cancel delete click event
+        document.getElementById('cancel').addEventListener('click', function() {
+            document.getElementById('confirm-modal').style.display = 'none';
+        });
     }
 
-    document.addEventListener('DOMContentLoaded', afterDOMLoad());
+    document.addEventListener('DOMContentLoaded', afterDOMLoad);
+
+    function deletePost(){
+        fetch_delete("/api/post")
+            // .then(() => window.location.href="/post")
+    }
+
+
 </script>
 </html>

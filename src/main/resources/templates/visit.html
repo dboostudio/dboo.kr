@@ -35,7 +35,7 @@
 
     function saveComment() {
         button.removeEventListener("click", saveComment);
-        let uri = '/api/v1/comment';
+        let uri = '/api/comment';
         let name = document.getElementById('name').value;
         let email = document.getElementById('email').value;
         let comment = document.getElementById('comment').value;
