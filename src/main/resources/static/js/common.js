@@ -148,3 +148,18 @@ function renderMarkdown(source, target) {
     target.innerHTML = marked.parse(source.value);
     hljs.highlightAll();
 }
+
+/**
+ * Set Message of Confirm Modal
+ * @param question Question for user confirm.
+ * @param confirmMessage Text of confirm button. default: "확인"
+ * @param cancelMessage Text of cancel button. default: "취소"
+ */
+function setConfirmModalMessage(question, confirmMessage, cancelMessage){
+    if(question)
+        document.getElementById('question').innerHTML = question;
+    if(confirmMessage)
+        document.getElementById('confirm').innerHTML = confirmMessage;
+    if(cancelMessage)
+        document.getElementById('cancel').innerHTML = cancelMessage;
+}

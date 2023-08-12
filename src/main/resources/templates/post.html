@@ -27,14 +27,7 @@
 
     <footer th:replace="~{fragments::footer}"></footer>
 </div>
-
-<div id="confirmModal" class="modal">
-    <div class="modal-content">
-        <p>게시글을 정말 삭제하시겠습니까?</p>
-        <button id="confirmDelete">삭제</button>
-        <button id="cancelDelete">취소</button>
-    </div>
-</div>
+<div th:replace="~{fragments::confirm-modal}"></div>
 </body>
 <script>
     function afterDOMLoad() {
@@ -67,25 +60,28 @@
             })
         })
 
+        // set delete confirm modal content
+        setConfirmModalMessage("게시글을 정말 삭제하시겠습니까?", "삭제");
+
         // delete icon click event
         document.querySelectorAll('#delete').forEach(element => {
             element.addEventListener('click', function () {
-                let modal = document.getElementById('confirmModal');
+                let modal = document.getElementById('confirm-modal');
                 modal.dataset.post_id = element.dataset.post_id
                 modal.style.display = 'block';
             })
         });
 
         // confirm delete click event
-        document.getElementById('confirmDelete').addEventListener('click', function() {
-            let modal = document.getElementById('confirmModal');
+        document.getElementById('confirm').addEventListener('click', function() {
+            let modal = document.getElementById('confirm-modal');
             deletePost(modal.dataset.post_id);
             modal.style.display = 'none';
         });
 
         // cancel delete click event
-        document.getElementById('cancelDelete').addEventListener('click', function() {
-            document.getElementById('confirmModal').style.display = 'none';
+        document.getElementById('cancel').addEventListener('click', function() {
+            document.getElementById('confirm-modal').style.display = 'none';
         });
     }
 
