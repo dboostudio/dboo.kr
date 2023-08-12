@@ -55,7 +55,7 @@ jobs:
       uses: fifsky/ssh-action@v0.0.6
       with:
         # Command to execute on the remote server.
-        command: "kubectl rollout restart dboo-spring -n dboo"
+        command: kubectl rollout restart deploy dboo-spring -n dboo
         host: ${{ secrets.SSH_HOST }}
         user: ${{ secrets.SSH_USERNAME }}
         port: ${{ secrets.SSH_PORT }}
