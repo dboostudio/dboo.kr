@@ -126,6 +126,7 @@ button#confirm {
 
 button#confirm:hover {
     background-color: #0062cc;
+    cursor: pointer;
 }
 
 button#cancel {
@@ -140,4 +141,5 @@ button#cancel {
 
 button#cancel:hover {
     background-color: gray;
+    cursor: pointer;
 }
