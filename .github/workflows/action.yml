@@ -1,4 +1,4 @@
-name: Gradle build and Docker Image CI
+name: CI
 
 on:
   push:
@@ -27,10 +27,10 @@ jobs:
         arguments: clean build
         
     - name: Build the Docker image
-      run: docker build . -t ${{secrets.RESGISTRY_HOST}}/dboo:$(date +%s)
+      run: docker build . -t ${{secrets.REGISTRY_HOST}}/dboo:$(date +%s)
 
     - name: docker login
-      run: docker login ${{secrets.RESGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
+      run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
       
     - name: docker push image
-      run: docker push ${{secrets.RESGISTRY_HOST}}/dboo:latest
+      run: docker push ${{secrets.REGISTRY_HOST}}/dboo:latest
