@@ -34,8 +34,11 @@ jobs:
 
     - name: Register private registry host to docker daemon
       run: |  
-        echo "{ \"insecure-registries\" : [\"$REGISTRY\"] }" | sudo tee /etc/docker/daemon.json
-        echo 'sudo systemctl restart docker'
+        echo '#!/bin/bash' > login.sh
+        echo 'echo "{ \"insecure-registries\" : [\"$REGISTRY\"] }" | sudo tee /etc/docker/daemon.json' >> login.sh
+        echo 'sudo systemctl restart docker' >> login.sh
+        chmod +x login.sh
+        bash login.sh
 
     - name: Login private docker registry
       run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
