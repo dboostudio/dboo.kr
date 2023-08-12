@@ -8,10 +8,12 @@ on:
 
 permissions:
   contents: read
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HOST: ${{secrets.REGISTRY_HOST}}
     steps:
     - uses: actions/checkout@v3
     
@@ -28,6 +30,9 @@ jobs:
         
     - name: Build the Docker image
       run: docker build . -t ${{secrets.REGISTRY_HOST}}/dboo:$(date +%s)
+
+    - name: Register private registry host to docker daemon
+      run: echo '{ "insecure-registries": ["$HOST"] }' > /etc/docker/daemon.json
 
     - name: docker login
       run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
