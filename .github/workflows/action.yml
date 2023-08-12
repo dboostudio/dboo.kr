@@ -31,11 +31,18 @@ jobs:
     - name: Build the Docker image
       run: docker build . -t ${{secrets.REGISTRY_HOST}}/dboo:$(date +%s)
 
-    - name: Register private registry host to docker daemon
-      run: echo '{ "insecure-registries": ["$HOST"] }' > /etc/docker/daemon.json
+    - name: Login to Private Docker Registry
+      uses: docker/login-action@v1
+      with:
+        registry: $${{secrets.REGISTRY_HOST}}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - name: docker login
-      run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
+    # - name: Register private registry host to docker daemon
+    #   run: echo "{ "insecure-registries": ["$HOST"] }" > /etc/docker/daemon.json
+
+    # - name: docker login
+    #   run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
       
     - name: docker push image
       run: docker push ${{secrets.REGISTRY_HOST}}/dboo:latest
