@@ -2,9 +2,8 @@ name: Continuous Integration and Delivery
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - "master"
 
 permissions:
   contents: read
@@ -31,7 +30,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . -t ${{ secrets.REGISTRY_HOST }}/dboo:latest
 
-    - name: Register private registry host to docker daemon
+    - name: Register Private Registry to Docker Daemon
       run: |  
         echo '#!/bin/bash' > login.sh
         echo 'echo "{ \"insecure-registries\" : [\"$REGISTRY\"] }" | sudo tee /etc/docker/daemon.json' >> login.sh
@@ -39,11 +38,14 @@ jobs:
         chmod +x login.sh
         bash login.sh
 
-    - name: Login private docker registry
+    - name: Login Private Registry
       run: docker login ${{secrets.REGISTRY_HOST}} -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}}
       
-    - name: Push docker image
+    - name: Push Docker image
       run: docker push ${{ secrets.REGISTRY_HOST }}/dboo:latest
+
+    - name: Remove login.sh && daemon.json
+      run: rm -f login.sh && sudo rm -f /etc/docker/daemon.json
 
   deploy:
     needs: build
@@ -54,7 +56,6 @@ jobs:
       # uses: fifsky/ssh-action@58b3c484be9c20cf118fd3b939a6d2cb3c769512
       uses: fifsky/ssh-action@v0.0.6
       with:
-        # Command to execute on the remote server.
         command: kubectl rollout restart deploy dboo-spring -n dboo
         host: ${{ secrets.SSH_HOST }}
         user: ${{ secrets.SSH_USERNAME }}
