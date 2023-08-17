@@ -1,7 +1,7 @@
 package kr.dboo.api.service;
 
 import kr.dboo.api.entity.Comment;
-import kr.dboo.api.payload.SaveCommentRequest;
+import kr.dboo.api.payload.CommentRequest;
 import kr.dboo.api.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,7 +26,7 @@ public class CommentService {
     }
 
     @Transactional
-    public void saveComment(SaveCommentRequest saveCommentRequest) {
+    public void createComment(CommentRequest saveCommentRequest) {
         Comment comment = Comment.builder()
                 .name(saveCommentRequest.getName())
                 .comment(saveCommentRequest.getComment())

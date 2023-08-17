@@ -31,7 +31,6 @@ public class PostService {
                 .orElseThrow(RuntimeException::new);
         post.setTitle(savePostRequest.getTitle());
         post.setContent(savePostRequest.getContent());
-        postRepository.save(post);
     }
 
     @Transactional
