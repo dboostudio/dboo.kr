@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class SaveCommentRequest {
+public class CommentRequest {
 
     @NotBlank(message = "이름을 입력해주세요.")
     @Size(max = 20, message = "이름은 20자 이하로 입력해주세요.")

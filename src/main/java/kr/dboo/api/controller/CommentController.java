@@ -1,7 +1,7 @@
 package kr.dboo.api.controller;
 
 import jakarta.validation.Valid;
-import kr.dboo.api.payload.SaveCommentRequest;
+import kr.dboo.api.payload.CommentRequest;
 import kr.dboo.api.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +24,10 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity saveComment(
-            @RequestBody @Valid SaveCommentRequest saveCommentRequest
+    public ResponseEntity createComment(
+            @RequestBody @Valid CommentRequest commentRequest
     ){
-        commentService.saveComment(saveCommentRequest);
+        commentService.createComment(commentRequest);
         return ResponseEntity.ok().build();
     }
 }
